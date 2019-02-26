@@ -1,0 +1,28 @@
+select:invalid {
+	opacity: 0.5;
+	font-style: italic;
+}
+
+.form-group.notified input {
+	background-color: #f8f8f8;
+}
+
+.input-group.date input {
+	background-color: #f8f8f8;
+}
+
+#td-notification p {
+	margin: 0;
+}
+
+#td-notification span {
+	line-height: 2;
+}
+
+#td-notification td {
+	padding: 5px;
+}
+
+.input-group.notified div {
+	cursor: pointer;
+}

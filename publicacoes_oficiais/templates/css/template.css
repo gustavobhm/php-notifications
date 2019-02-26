@@ -1,0 +1,16 @@
+#td-template p {
+	margin: 0;
+}
+
+#td-template span {
+	line-height: 2;
+}
+
+#td-template td {
+	padding: 5px;
+}
+
+select:invalid {
+    opacity: 0.5;
+    font-style: italic;
+}
