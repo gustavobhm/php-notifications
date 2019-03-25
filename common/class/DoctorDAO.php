@@ -5,12 +5,13 @@ class DoctorDAO
 
     public static function getNameByCRM($crm)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     SELECT 
                                         codigo as crm, 
-                                        nome as name 
+                                        TRIM(nome) as name,
+                                        sexo as genre  
                                     FROM 
                                         Cremesp.fis_new 
                                     WHERE 

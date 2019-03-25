@@ -19,3 +19,8 @@
 <script src="/common/js/notify.js"></script>
 
 <script src="/common/js/jquery.mask.js"></script>
+
+<script src="/common/js/stringReplaceAll.js"></script>
+
+<script src="/common/js/jspdf.debug.js"></script>
+<script src="/common/js/html2canvas.js"></script>

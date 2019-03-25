@@ -1,0 +1,117 @@
+/*The styles below are required becase the default site css*/
+body {
+	color: #666;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.h1, h1 {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#central_interna img {
+	padding: 0px;
+}
+
+#breadcrumb a {
+	color: #930;
+	text-decoration: none;
+}
+
+a {
+	color: #930;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #930;
+	text-decoration: underline;
+}
+
+#top_menu {
+	box-sizing: content-box;
+}
+
+.menu a {
+	float: left;
+	color: #fff;
+	text-decoration: none;
+	width: 192px;
+	height: 28px;
+	padding-top: 8px;
+	box-sizing: content-box;
+}
+
+.menu ul li {
+	box-sizing: content-box;
+}
+
+table td {
+	padding: 5px;
+}
+
+p {
+	margin: 0 5px 10px 5px;
+}
+
+.form-check {
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.modal-body {
+	padding: 1rem;
+}
+
+.modal-content {
+	display: table;
+}
+
+#div-notification p {
+	margin: 0;
+}
+
+#div-notification span {
+	line-height: 2;
+}
+
+.modal.fade {
+	z-index: 10000000 !important;
+}
+
+
+#header_section_button li {
+	box-sizing: content-box;
+}
+
+.sharing-cl a {
+    box-sizing: content-box;
+} 
+
+.fa-file-image-o {
+	cursor: pointer;
+}
+
+.fa-file-image-o:hover {
+    color: #007bff;
+}
+
+.fa-file-pdf-o {
+	cursor: pointer;
+	margin-left: 12px;
+}
+
+.fa-file-pdf-o:hover {
+    color: #e74c3c;
+}
+
+.fa-times {
+	cursor: pointer;
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.fa-times:hover {
+    color: #e74c3c;
+}

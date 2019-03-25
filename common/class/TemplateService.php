@@ -31,7 +31,7 @@ class TemplateService
     public static function getTemplateByID($id)
     {
         return TemplateDAO::getTemplateByID($id);
-    }  
+    }
     
 }
 

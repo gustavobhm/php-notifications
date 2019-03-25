@@ -16,6 +16,7 @@
 	<?php include '/var/www/cremesp.com/common/resources/templates/commonJS.php'; ?>
 	<script src="js/datepicker.js"></script>	
     <script src="js/dataTable.js"></script>
+    <script src="js/parametersNotification.js"></script>
     <script src="js/notification.js"></script>
     <script src="js/modalNotification.js"></script>
     

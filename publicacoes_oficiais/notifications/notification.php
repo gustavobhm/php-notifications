@@ -45,10 +45,12 @@
         							<small><b>ID:</b></small>  
         							<?php echo sprintf("%06d", $notification['id']); ?>
         						</p>
-        						<p>
-        							<small><b>Publication Date:</b></small><br> 
-        							<?php echo $notification['date']; ?>
-        						</p>
+        						<?php if(!($departmentID == SSI_DEPARTMENT_ID && !$notification['published'])) : ?>
+            						<p>
+            							<small><b>Publication Date:</b></small><br> 
+            							<?php echo $notification['date']; ?>
+            						</p>
+            					<?php endif; ?>
         						<p>
         							<small><b>CRM: </b></small> 
         							<?php echo $notification['crm']; ?>
@@ -67,8 +69,6 @@
                                     	<b class="text-success">Published</b>
                                     	<?php if($notification['revoked']==1) : ?>
           	                            	and <b class="text-danger">Revoked</b> by notification <?php echo sprintf("%06d", $notification['revoked_notification_id']); ?>
-          	                            <?php else : ?>
-          	                            
                                     	<?php endif; ?>
                                     <?php else : ?>
                                    		<b class="text-danger">Not published</b>
@@ -81,21 +81,29 @@
 						<?php echo $notification['notification'] ?>
 					</td>
 					<td>
-						<a href="#editAddNotificationModal" class="edit"
-						   data-toggle="modal" 
-        				   data-modal-type="Edit Notification"
-        			       data-id="<?php echo $notification['id']; ?>"
-        				   data-date="<?php echo $notification['date']; ?>"
-        				   data-crm="<?php echo $notification['crm']; ?>"
-        				   data-notified="<?php echo $notification['notified']; ?>"
-        				   data-published="<?php echo $notification['published']; ?>"
-        				   data-template_id="<?php echo $notification['template_id']; ?>"
-        				   data-notification="<?php echo $notification['notification']; ?>" 
-        				   data-revoked="<?php echo $notification['revoked']; ?>"
-        				   data-revoked_notification_id="<?php echo $notification['revoked_notification_id']; ?>"> 
-							<i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit">edit</i>
-						</a>
-						<?php if(!$notification['published']) : ?> 
+						<?php if(!($notification['published'] && $departmentID == SSI_DEPARTMENT_ID)) : ?>
+    						<a href="#editAddNotificationModal" class="edit"
+    						   data-toggle="modal" 
+            				   data-modal-type="Edit Notification"
+            				   data-department_id="<?php echo $departmentID; ?>"
+            			       data-id="<?php echo $notification['id']; ?>"
+            				   data-date="<?php echo $notification['date']; ?>"
+            				   data-crm="<?php echo $notification['crm']; ?>"
+            				   data-notified="<?php echo $notification['notified']; ?>"
+            				   data-published="<?php echo $notification['published']; ?>"
+            				   data-template_id="<?php echo $notification['template_id']; ?>"
+            				   data-notification="<?php echo $notification['notification']; ?>" 
+            				   data-revoked="<?php echo $notification['revoked']; ?>"
+            				   data-revoked_notification_id="<?php echo $notification['revoked_notification_id']; ?>"
+							   data-pep="<?php echo $notification['pep']; ?>"
+            				   data-cfm_resolution="<?php echo $notification['cfm_resolution']; ?>"
+            				   data-articles="<?php echo $notification['articles']; ?>"            				   
+            				   data-unity="<?php echo $notification['unity']; ?>"
+            				   data-unity_address="<?php echo $notification['unity_address']; ?>"> 
+    							<i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit">edit</i>
+    						</a>
+    					<?php endif; ?>
+						<?php if(!$notification['published'] || $departmentID == SSI_DEPARTMENT_ID) : ?> 
     						<a href="#deleteNotificationModal" class="delete"	data-toggle="modal" data-id="<?php echo $notification['id']; ?>"> 
     							<i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete">delete</i>
     						</a>

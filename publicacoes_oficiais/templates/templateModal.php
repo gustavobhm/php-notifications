@@ -10,15 +10,6 @@
 				<div class="modal-body">
 					<input id="input-id" name="id" type="hidden">
 					<div class="form-group">
-						<label>Department</label>     				            
-                       	<select id="select-department" name="department" class="form-control" required autofocus>
-							<option value="" disabled selected hidden>Choose the department responsible for the template...</option>                        	
-           					<?php foreach (DepartmentService::listDepartments() as $department): ?>
-                   				<option value="<?php echo $department['id_depto']; ?>"><?php echo $department['sigla'] ? $department['nome_depto'] . " - " . $department['sigla']:$department['nome_depto']; ?></option>
-               				<?php endforeach; ?>                        	
-                       	</select>
-					</div>					
-					<div class="form-group">
 						<label>Name</label> 
 						<input id="input-name" name="name" type="text" class="form-control" placeholder="Type the template name..."  required autofocus>
 					</div>

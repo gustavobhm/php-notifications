@@ -5,7 +5,7 @@ class DepartmentDAO
 
     public static function listDepartments()
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         return $conn->query("
                                 SELECT 
@@ -19,7 +19,7 @@ class DepartmentDAO
     
     public static function getDepartmentByID($id)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         $stmt = $conn->prepare('
                                     SELECT 

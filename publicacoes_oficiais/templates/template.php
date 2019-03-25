@@ -7,6 +7,15 @@
 	<?php unset($_SESSION['status']); ?>    
 <?php endif; ?>
 
+<?php if (isset($_SESSION['errorMessage'])):?>
+    <script> 
+    notifyError('&nbsp;The template has NOT been deleted! <br><br> <?php echo $_SESSION['errorMessage']; ?> ');
+    </script>        
+	<?php unset($_SESSION['errorMessage']); ?>    
+<?php endif; ?>
+
+<?php $departmentID = isset($_SESSION['id_depto'])? $_SESSION['id_depto']: ""; ?>
+
 <div class="container-fluid">
 
 	<div class="table-wrapper">
@@ -34,7 +43,7 @@
 				</tr>
 			</thead>
 			<tbody>
-       			<?php foreach (TemplateService::listTemplates() as $template): ?>
+       			<?php foreach (TemplateService::listTemplatesByDepartment($departmentID) as $template): ?>
 				<tr>
 					<td>
 						<center>
@@ -47,14 +56,6 @@
             						<small><b>Template Name</b></small><br>
            				    		<?php echo $template['name']; ?>
            				    	</p>
-            					<p>
-            						<small><b>Department </b></small><br>
-            						<?php 
-            						  $id = $template['department_id'];
-            						  $department = DepartmentService::getDepartmentByID($id);
-            						  echo $department['sigla'] ? $department['nome_depto'] . " - " . $department['sigla']:$department['nome_depto'];
-            						?>
-            					</p>
     						</em>					    	
 						</center>
 					</td>
@@ -65,7 +66,7 @@
 						data-toggle="modal" data-modal-type="Edit Template"
 						data-id="<?php echo $template['id']; ?>"
 						data-department="<?php echo $template['department_id']; ?>"
-						data-name="<?php echo $template['name']; ?>"
+						data-name='<?php echo $template['name']; ?>'
 						data-template="<?php echo $template['template']; ?>"> 
 							<i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit">edit</i>
 						</a> 

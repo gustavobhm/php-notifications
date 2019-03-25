@@ -5,7 +5,7 @@ class NotificationDAO
 
     public static function listNotificationsByDepartment($departmentID)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                 SELECT 
@@ -18,7 +18,12 @@ class NotificationDAO
                                     n.notified, 
                                     n.published, 
                                     n.revoked, 
-                                    n.revoked_notification_id  
+                                    n.revoked_notification_id,
+                                    n.unity,
+                                    n.unity_address,
+                                    n.pep,
+                                    n.cfm_resolution,
+                                    n.articles  
                                 FROM 
                                     publicacoes_oficiais.notifications n
                                 LEFT JOIN  
@@ -39,7 +44,7 @@ class NotificationDAO
 
     public static function listPublishedNotifications()
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         return $conn->query('
                                 SELECT 
@@ -52,7 +57,12 @@ class NotificationDAO
                                     n.notified, 
                                     n.published, 
                                     n.revoked, 
-                                    n.revoked_notification_id  
+                                    n.revoked_notification_id,
+                                    n.unity,
+                                    n.unity_address,
+                                    n.pep,
+                                    n.cfm_resolution,
+                                    n.articles
                                 FROM 
                                     publicacoes_oficiais.notifications n
                                 LEFT JOIN  
@@ -68,7 +78,7 @@ class NotificationDAO
 
     public static function saveNotification(Notification $notification)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     INSERT INTO 
@@ -81,7 +91,12 @@ class NotificationDAO
                                             published, 
                                             revoked, 
                                             revoked_notification_id,
-                                            show_notification_am
+                                            show_notification_am,
+                                            unity,
+                                            unity_address,
+                                            pep,
+                                            cfm_resolution,
+                                            articles
                                         ) 
                                         VALUES (
                                             :templateID, 
@@ -92,7 +107,12 @@ class NotificationDAO
                                             :published, 
                                             :revoked, 
                                             :revokedNotificationID,
-                                            :showNotificationAM
+                                            :showNotificationAM,
+                                            :unity,
+                                            :unityAddress,
+                                            :pep,
+                                            :cfmResolution,
+                                            :articles
                                         )'
                                 );
         $stmt->execute(array(
@@ -104,7 +124,12 @@ class NotificationDAO
             ':published' => $notification->getPublished(),
             ':revoked' => $notification->getRevoked(),
             ':revokedNotificationID' => $notification->getRevokedNotificationID(),
-            ':showNotificationAM' => $notification->getShowNotificationAM()
+            ':showNotificationAM' => $notification->getShowNotificationAM(),
+            ':unity' => $notification->getUnity(),
+            ':unityAddress' => $notification->getUnityAddress(),
+            ':pep' => $notification->getPEP(),
+            ':cfmResolution' => $notification->getCFMResolution(),
+            ':articles' => $notification->getArticles()
         ));
 
         return $stmt->rowCount();
@@ -112,7 +137,7 @@ class NotificationDAO
 
     public static function updateNotification(Notification $notification)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     UPDATE 
@@ -126,7 +151,12 @@ class NotificationDAO
                                         published = :published, 
                                         revoked = :revoked, 
                                         revoked_notification_id = :revokedNotificationID,
-                                        show_notification_am = :showNotificationAM  
+                                        show_notification_am = :showNotificationAM,
+                                        unity = :unity,
+                                        unity_address = :unityAddress,
+                                        pep = :pep,
+                                        cfm_resolution = :cfmResolution,
+                                        articles = :articles
                                     WHERE 
                                         id = :id'
                                 );
@@ -140,7 +170,12 @@ class NotificationDAO
             ':published' => $notification->getPublished(),
             ':revoked' => $notification->getRevoked(),
             ':revokedNotificationID' => $notification->getRevokedNotificationID(),
-            ':showNotificationAM' => $notification->getShowNotificationAM()
+            ':showNotificationAM' => $notification->getShowNotificationAM(),
+            ':unity' => $notification->getUnity(),
+            ':unityAddress' => $notification->getUnityAddress(),
+            ':pep' => $notification->getPEP(),
+            ':cfmResolution' => $notification->getCFMResolution(),
+            ':articles' => $notification->getArticles()
         ));
 
         return $stmt->rowCount();
@@ -148,7 +183,7 @@ class NotificationDAO
     
     public static function updateShowNotification($id, $showNotification)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         $stmt = $conn->prepare('
                                     UPDATE
@@ -168,7 +203,7 @@ class NotificationDAO
     
     public static function deleteNotification($id)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     DELETE
@@ -185,7 +220,7 @@ class NotificationDAO
 
     public static function getNotificationByID($id)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     SELECT 
@@ -198,7 +233,12 @@ class NotificationDAO
                                         n.notified, 
                                         n.published, 
                                         n.revoked, 
-                                        n.revoked_notification_id  
+                                        n.revoked_notification_id,
+                                        n.unity,
+                                        n.unity_address,
+                                        n.pep,
+                                        n.cfm_resolution,
+                                        n.articles  
                                     FROM 
                                         publicacoes_oficiais.notifications n
                                     LEFT JOIN  
@@ -218,7 +258,7 @@ class NotificationDAO
 
     public static function listNotificationByNotID($id, $search, $departmentID)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     SELECT
@@ -231,7 +271,12 @@ class NotificationDAO
                                         n.notified,
                                         n.published,
                                         n.revoked,
-                                        n.revoked_notification_id
+                                        n.revoked_notification_id,
+                                        n.unity,
+                                        n.unity_address,
+                                        n.pep,
+                                        n.cfm_resolution,
+                                        n.articles  
                                     FROM
                                         publicacoes_oficiais.notifications n
                                     LEFT JOIN
@@ -262,7 +307,7 @@ class NotificationDAO
     
     public static function listNotificationsByCRM($crm)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         $stmt = $conn->prepare('
                                     SELECT
@@ -275,7 +320,12 @@ class NotificationDAO
                                         n.notified,
                                         n.published,
                                         n.revoked,
-                                        n.revoked_notification_id
+                                        n.revoked_notification_id,
+                                        n.unity,
+                                        n.unity_address,
+                                        n.pep,
+                                        n.cfm_resolution,
+                                        n.articles  
                                     FROM
                                         publicacoes_oficiais.notifications n
                                     LEFT JOIN

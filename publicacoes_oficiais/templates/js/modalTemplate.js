@@ -4,8 +4,8 @@ $(function() {
 
 	$('#editAddTemplateModal').on('show.bs.modal', function(e) {
 
-		var target = $(e.relatedTarget);
-		var modalType = target.data('modal-type');
+		let target = $(e.relatedTarget);
+		let modalType = target.data('modal-type');
 		
 		$("#h4-title").text(modalType);
 
@@ -29,8 +29,8 @@ $(function() {
 
 	$('#deleteTemplateModal').on('show.bs.modal', function(e) {
 		
-		var target = $(e.relatedTarget);
-		var id = target.data('id');
+		let target = $(e.relatedTarget);
+		let id = target.data('id');
 		
 		$('#delete-input-id').val(id);
 		
@@ -47,13 +47,11 @@ $(function() {
 
 function setValuesInTemplate(target, editor){
 	
-	var id = target.data('id');
-	var department = target.data('department');
-	var name = target.data('name');
-	var template = target.data('template');
+	let id = target.data('id');
+	let name = target.data('name');
+	let template = target.data('template');
 	
 	$('#input-id').val(id);
-	$('#select-department').val(department);
 	$('#input-name').val(name);
 	
 	editor.setData(template);
@@ -64,7 +62,7 @@ function fixEditorHeight(editor) {
 	
 	setTimeout(function() {
 		editor.focus();
-		$('#select-department').focus();
+		$('#input-name').focus();
 	}, 200);
 
 }

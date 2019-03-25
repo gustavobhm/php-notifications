@@ -5,7 +5,7 @@ class TemplateDAO
     
     public static function listTemplates()
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         return $conn->query("
                                 SELECT
@@ -19,7 +19,7 @@ class TemplateDAO
 
     public static function listTemplatesByDepartment($departmentID)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                 SELECT 
@@ -40,7 +40,7 @@ class TemplateDAO
 
     public static function saveTemplate(Template $template)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     INSERT INTO 
@@ -65,7 +65,7 @@ class TemplateDAO
 
     public static function updateTemplate(Template $template)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
 
         $stmt = $conn->prepare('
                                     UPDATE 
@@ -89,7 +89,7 @@ class TemplateDAO
     
     public static function deleteTemplate($id)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         $stmt = $conn->prepare('
                                     DELETE FROM 
@@ -105,7 +105,7 @@ class TemplateDAO
     
     public static function getTemplateByID($id)
     {
-        $conn = ConnectionFactory::getInstance()->getConnection();
+        $conn = MySQLConnectionFactory::getInstance()->getConnection();
         
         $stmt = $conn->prepare('
                                     SELECT 

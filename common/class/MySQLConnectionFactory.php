@@ -1,6 +1,6 @@
 <?php
 
-class ConnectionFactory
+class MySQLConnectionFactory
 {
 
     // Hold the class instance.
@@ -24,7 +24,7 @@ class ConnectionFactory
     public static function getInstance()
     {
         if (! self::$instance) {
-            self::$instance = new ConnectionFactory();
+            self::$instance = new MySQLConnectionFactory();
         }
 
         return self::$instance;

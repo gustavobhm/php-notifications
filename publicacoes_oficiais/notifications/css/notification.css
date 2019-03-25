@@ -3,11 +3,25 @@ select:invalid {
 	font-style: italic;
 }
 
+.form-group.unity-address textarea {
+	background-color: #f8f8f8;
+	resize: none;
+	height: 100%;
+}
+
 .form-group.notified input {
 	background-color: #f8f8f8;
 }
 
 .input-group.date input {
+	background-color: #f8f8f8;
+}
+
+.form-group.cfm-resolution input {
+	background-color: #f8f8f8;
+}
+
+.form-group.articles input {
 	background-color: #f8f8f8;
 }
 
@@ -23,6 +37,11 @@ select:invalid {
 	padding: 5px;
 }
 
-.input-group.notified div {
+.fa-refresh{
 	cursor: pointer;
+	margin-left: 10px;
+}
+
+.fa-refresh:hover {
+    color: #28a745;
 }
